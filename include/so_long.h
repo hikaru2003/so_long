@@ -6,7 +6,7 @@
 /*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:26:20 by hmorisak          #+#    #+#             */
-/*   Updated: 2023/05/04 20:19:20 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/09/21 18:20:02 by hikaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdarg.h>
+# include "../libft/libft.h"
 
 # define KEY_ESC		65307
 
@@ -151,10 +152,10 @@ int		map_free(t_data *data);
 int		data_free(t_data *data);
 
 //libft
-char	*ft_strchr(const char *s, int c);
-size_t	ft_strlen(const char *c);
-int		ft_strcmp(const char *s1, const char *s2);
-char	*ft_strdup(const char *s1);
+// char	*ft_strchr(const char *s, int c);
+// size_t	ft_strlen(const char *c);
+// int		ft_strcmp(const char *s1, const char *s2);
+// char	*ft_strdup(const char *s1);
 
 //printf
 size_t	ft_strlen(const char *c);
@@ -168,8 +169,8 @@ void	ft_putnbr_u(unsigned int n, int *len);
 
 //gnl
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *line, char *buf);
-char	*ft_strchr(const char *s, int c);
+// char	*ft_strjoin(char *line, char *buf);
+// char	*ft_strchr(const char *s, int c);
 char	*ft_free(char **str);
 
 //go_direct.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 21:33:08 by hmorisak          #+#    #+#             */
-/*   Updated: 2023/04/24 14:13:25 by hmorisak         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:51:34 by hikaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void	img_init(t_data *data)
 			"image/player_right.xpm", &(data->xpm_width), &(data->xpm_height));
 	data->player_left_img = mlx_xpm_file_to_image(data->mlx,
 			"image/player_left.xpm", &(data->xpm_width), &(data->xpm_height));
+	if (!data->space_img || !data->wall_img || !data->collect_img
+		|| !data->exit_img || !data->player_front_img || !data->player_back_img
+		|| !data->player_right_img || !data->player_left_img)
+		file_error();
 }
 
 void	data_init(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:33:39 by hmorisak          #+#    #+#             */
-/*   Updated: 2023/05/04 20:34:49 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/09/20 18:50:30 by hikaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-__attribute__((destructor))
-static void	destructor(void){
-	system("leaks -q so_long");
-}
+// __attribute__((destructor))
+// static void	destructor(void){
+// 	system("leaks -q so_long");
+// }

@@ -1,48 +1,64 @@
 NAME = so_long
 
-SRCS	=	srcs/check_file.c			\
-			srcs/check_goal.c			\
-			srcs/check_map.c			\
-			srcs/creat_map.c			\
-			srcs/destroy.c				\
-			srcs/draw.c					\
-			srcs/error.c				\
-			srcs/free.c					\
-			srcs/ft_print_conv.c		\
-			srcs/ft_printf.c			\
-			srcs/ft_put.c				\
-			srcs/ft_strchr.c			\
-			srcs/ft_strcmp.c			\
-			srcs/ft_strdup.c			\
-			srcs/ft_strlen.c			\
-			srcs/get_next_line_utils.c	\
-			srcs/get_next_line.c		\
-			srcs/init.c					\
-			srcs/main.c					\
-			srcs/next_frame_tool.c		\
-			srcs/next_frame.c			\
-			srcs/to_hexa.c				\
+SRCS	=	check_file.c			\
+			check_goal.c			\
+			check_map.c			\
+			creat_map.c			\
+			destroy.c				\
+			draw.c					\
+			error.c				\
+			free.c					\
+			ft_print_conv.c		\
+			ft_printf.c			\
+			ft_put.c				\
+			get_next_line_utils.c	\
+			get_next_line.c		\
+			init.c					\
+			main.c					\
+			next_frame_tool.c		\
+			next_frame.c			\
+			to_hexa.c				\
 
+INCLUDE_DIR = ./include
+SRCDIR = ./srcs/
+OBJDIR = ./obj/
 
-OBJS = $(SRCS:%.c=%.o)
+MLX_DIR = ./mlx/
 
-CC = cc
+LIBFT_DIR = ./libft/
+LIBFT_A = $(LIBFT_DIR)libft.a
+
+OBJS = $(SRCS:%.c=$(OBJDIR)%.o)
+
+CC = gcc
+
 CFLAGS = -Wall -Wextra -Werror -I include
 
-all: $(NAME)
+MLX_FLAG = -lmlx -framework OpenGL -framework AppKit
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+all: $(LIBFT_A) $(OBJDIR) $(NAME)
+
+$(NAME): $(MLX_DIR) $(LIBFT_A) $(OBJDIR) $(OBJS)
+	make -C $(MLX_DIR)
+	$(CC) $(CFLAGS) -Lmlx $(MLX_FLAG) -o $(NAME) $(LIBFT_A) $(OBJS)
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)%.o: $(SRCDIR)%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(LIBFT_A):
+	make -C $(LIBFT_DIR)
 
 clean:
-	rm -f $(OBJS) $(M_OBJS) $(B_OBJS)
+	make clean -C $(MLX_DIR)
+	make fclean -C $(LIBFT_DIR)
+	rm -rf $(OBJDIR)
 
 fclean: clean
 	rm -f $(NAME)
 
-bonus:	$(OBJS) $(B_OBJS)
-	make WITH_BONUS=1
-
 re: fclean all
 
-.PHONY: all clean fclean bonus re
+.PHONY: all clean fclean re
