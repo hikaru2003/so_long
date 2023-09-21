@@ -2,17 +2,17 @@ NAME = so_long
 
 SRCS	=	check_file.c			\
 			check_goal.c			\
-			check_map.c			\
-			creat_map.c			\
+			check_map.c				\
+			creat_map.c				\
 			destroy.c				\
 			draw.c					\
-			error.c				\
+			error.c					\
 			free.c					\
-			ft_print_conv.c		\
-			ft_printf.c			\
+			ft_print_conv.c			\
+			ft_printf.c				\
 			ft_put.c				\
 			get_next_line_utils.c	\
-			get_next_line.c		\
+			get_next_line.c			\
 			init.c					\
 			main.c					\
 			next_frame_tool.c		\
