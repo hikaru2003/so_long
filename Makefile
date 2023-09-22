@@ -30,9 +30,9 @@ LIBFT_A = $(LIBFT_DIR)libft.a
 
 OBJS = $(SRCS:%.c=$(OBJDIR)%.o)
 
-CC = gcc
+CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I include
+CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
 
 MLX_FLAG = -lmlx -framework OpenGL -framework AppKit
 
