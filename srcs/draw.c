@@ -3,72 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmorisak <hmorisak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 19:34:23 by hmorisak          #+#    #+#             */
-/*   Updated: 2023/04/10 19:34:40 by hmorisak         ###   ########.fr       */
+/*   Updated: 2023/09/22 21:29:01 by hikaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	draw_player(t_data *data, t_map_index *index)
+static void	draw_player(t_data *data, int x, int y)
 {
-	if (data->player_direction == FRONT)
+	if (data->player.direction == FRONT)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->player_front_img, index->x, index->y);
-	if (data->player_direction == BACK)
+			data->player_front_img, x * data->xpm_width, y * data->xpm_height);
+	if (data->player.direction == BACK)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->player_back_img, index->x, index->y);
-	if (data->player_direction == RIGHT)
+			data->player_back_img, x * data->xpm_width, y * data->xpm_height);
+	if (data->player.direction == RIGHT)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->player_right_img, index->x, index->y);
-	if (data->player_direction == LEFT)
+			data->player_right_img, x * data->xpm_width, y * data->xpm_height);
+	if (data->player.direction == LEFT)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->player_left_img, index->x, index->y);
+			data->player_left_img, x * data->xpm_width, y * data->xpm_height);
 }
 
-void	draw_one_image(t_data *data, t_map_index *index)
+static void	draw_one_image(t_data *data, int x, int y)
 {
-	if (data->map->row[index->width] == '1')
+	if (data->map[y][x] == '1')
 		mlx_put_image_to_window(data->mlx, data->win, data->wall_img,
-			index->x, index->y);
-	else if (data->map->row[index->width] == '0')
+			x * data->xpm_width, y * data->xpm_height);
+	else if (data->map[y][x] == '0')
 		mlx_put_image_to_window(data->mlx, data->win, data->space_img,
-			index->x, index->y);
-	else if (data->map->row[index->width] == 'C')
+			x * data->xpm_width, y * data->xpm_height);
+	else if (data->map[y][x] == 'C')
 		mlx_put_image_to_window(data->mlx, data->win, data->collect_img,
-			index->x, index->y);
-	else if (data->map->row[index->width] == 'E')
+			x * data->xpm_width, y * data->xpm_height);
+	else if (data->map[y][x] == 'E')
 		mlx_put_image_to_window(data->mlx, data->win, data->exit_img,
-			index->x, index->y);
-	else if (data->map->row[index->width] == 'P')
-		draw_player(data, index);
+			x * data->xpm_width, y * data->xpm_height);
+	else if (data->map[y][x] == 'P')
+		draw_player(data, x, y);
 }
 
 int	draw_map(t_data *data)
 {
-	t_map_index	*index;
+	int	x;
+	int	y;
 
-	index = (t_map_index *)malloc(sizeof(t_map_index));
-	if (!index)
-		print_error(data);
-	index_init(index);
-	data->map = data->head.next;
-	while (index->height < data->height)
+	x = 0;
+	y = 0;
+	while (y < data->map_height)
 	{
-		index->width = 0;
-		index->x = 0;
-		while (index->width < data->width)
+		x = 0;
+		while (x < data->map_width)
 		{
-			draw_one_image(data, index);
-			index->x += data->xpm_width;
-			index->width++;
+			draw_one_image(data, x, y);
+			x++;
 		}
-		index->height++;
-		index->y += data->xpm_height;
-		data->map = data->map->next;
+		y++;
 	}
-	free(index);
+	if (data->exit_flag == true)
+		ft_destroy(data);
 	return (0);
 }

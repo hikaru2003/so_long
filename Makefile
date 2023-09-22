@@ -1,8 +1,7 @@
 NAME = so_long
 
 SRCS	=	check_file.c			\
-			check_goal.c			\
-			check_map.c				\
+			check_playable.c		\
 			creat_map.c				\
 			destroy.c				\
 			draw.c					\
@@ -32,7 +31,7 @@ OBJS = $(SRCS:%.c=$(OBJDIR)%.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
+CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) #-g -fsanitize=address
 
 MLX_FLAG = -lmlx -framework OpenGL -framework AppKit
 
