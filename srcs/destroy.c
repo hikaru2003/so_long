@@ -6,7 +6,7 @@
 /*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:28:15 by hmorisak          #+#    #+#             */
-/*   Updated: 2023/09/22 22:01:55 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/09/24 15:01:00 by hikaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,5 @@
 int	ft_destroy(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
-	// map_free(data);
-	// data_free(data);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: hikaru <hikaru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:41:42 by hmorisak          #+#    #+#             */
-/*   Updated: 2023/09/22 21:29:38 by hikaru           ###   ########.fr       */
+/*   Updated: 2023/09/24 15:01:08 by hikaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	next_frame(int keycode, t_data *data)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(data->mlx, data->win);
-		// data_free(data);
 		exit(0);
 	}
 	if (keycode == 13 || keycode == 126)
