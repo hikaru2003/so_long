@@ -1,3 +1,4 @@
 so_long
 obj/
-libft/libft.a
+*.a
+*.o
